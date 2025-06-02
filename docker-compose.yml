@@ -1,0 +1,47 @@
+version: '3.8'
+
+services:
+  oracle-db:
+    image: gvenzl/oracle-free:latest
+    container_name: oracle-db-booksapp
+    ports:
+      - "15210:1521" 
+      - "5500:5500" 
+    environment:
+      # Contraseña para los usuarios SYS, SYSTEM y PDBADMIN
+      - ORACLE_PASSWORD=admin
+      - ORACLE_DATABASE=BOOKS_PDB # Opcional, si quieres un nombre específico
+      - APP_USER=BOOKS_APP
+      - APP_USER_PASSWORD=admin
+    volumes:
+      - oracle_books_data:/opt/oracle/oradata 
+      
+      - ./db_scripts:/container-entrypoint-initdb.d
+    networks:
+      - books-app-network
+
+  books-api:
+    build:
+      context: ./books-api
+      dockerfile: Dockerfile
+    container_name: books-api-oracle
+    ports:
+      - "8080:8080" # Mapea el 8080 del contenedor al 8080 de tu host
+    environment:
+      # Configuración de la base de datos para la aplicación Spring Boot
+      - SPRING_DATASOURCE_URL=jdbc:oracle:thin:@oracle-db-booksapp:1521/BOOKS_PDB # Usa el nombre del servicio de BD y la PDB por defecto
+      - SPRING_DATASOURCE_USERNAME=BOOKS_APP # Este usuario DEBE SER CREADO por tus scripts en db_scripts
+      - SPRING_DATASOURCE_PASSWORD=admin
+      - SPRING_JPA_HIBERNATE_DDL_AUTO=none
+    depends_on:
+      oracle-db-booksapp:
+        condition: service_healthy
+    networks:
+      - books-app-network
+
+volumes:
+  oracle_books_data:
+
+networks:
+  books-app-network:
+    driver: bridge
