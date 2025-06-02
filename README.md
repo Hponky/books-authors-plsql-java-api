@@ -3,7 +3,7 @@
 Este proyecto implementa una aplicación backend para la administración de libros y sus respectivos autores, cumpliendo con las siguientes condiciones:
 
 -   **Backend realizado en PL/SQL:** La lógica de negocio principal y la persistencia de datos se gestionan mediante paquetes PL/SQL en una base de datos Oracle.
--   **Capa de servicios expuesta mediante API REST:** Se ha desarrollado una API RESTful utilizando Java 21 y Spring Boot 3.3.1 (con Maven) para interactuar con la lógica de negocio implementada en PL/SQL.
+-   **Capa de servicios expuesta mediante API REST:** Se ha desarrollado una API RESTful utilizando Java 21 y Spring Boot 3.5 (con Maven) para interactuar con la lógica de negocio implementada en PL/SQL.
 
 La aplicación permite las operaciones de inserción, edición, consulta y borrado de información, tanto para libros como para autores, incluyendo la validación de dependencias para asegurar la integridad de los datos.
 
