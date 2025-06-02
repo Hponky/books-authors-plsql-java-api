@@ -16,7 +16,7 @@ La aplicación permite las operaciones de inserción, edición, consulta y borra
 -   **Lenguaje de Backend (BD):** PL/SQL
 -   **Conectividad a BD (Java):** Spring JDBC
 -   **Contenerización:** Docker, Docker Compose
--   *(Opcional si aplica) Pruebas: JUnit 5, Mockito, Spring Boot Test, Testcontainers*
+-   *Pruebas: JUnit 5, Mockito, Spring Boot Test*
 
 ## Estructura del Proyecto
 
@@ -27,7 +27,7 @@ La aplicación permite las operaciones de inserción, edición, consulta y borra
 -   `docker-compose.yml`: Archivo para orquestar los servicios de la aplicación y la base de datos.
 -   `README.md`: Este archivo.
 
-## Cómo Ejecutar la Aplicación (Usando Docker Compose - Recomendado)
+## Cómo Ejecutar la Aplicación (Usando Docker Compose)
 
 Este método levanta la base de datos Oracle y la aplicación Spring Boot en contenedores Docker.
 
@@ -45,14 +45,13 @@ Este método levanta la base de datos Oracle y la aplicación Spring Boot en con
     *   Revisa y modifica la variable `ORACLE_PASSWORD` en `docker-compose.yml` para el servicio `oracle-db`. Esta será la contraseña para `SYS`/`SYSTEM`.
     *   Modifica la variable `SPRING_DATASOURCE_PASSWORD` en `docker-compose.yml` para el servicio `books-api`.
     *   Asegúrate de que la contraseña para `BOOKS_APP` en el script `db_scripts/01_create_user.sql` coincida con `SPRING_DATASOURCE_PASSWORD`.
-    *   **Es crucial cambiar las contraseñas por defecto/ejemplo por unas seguras.**
 4.  **Levanta los Servicios:**
     ```bash
     docker-compose up --build
     ```
     *   La opción `--build` reconstruirá la imagen de la aplicación Java si hay cambios.
     *   La primera vez, la descarga de la imagen de Oracle y la inicialización de la base de datos (ejecutando los scripts de `db_scripts/`) pueden tardar varios minutos.
-    *   La aplicación API estará disponible en `http://localhost:8080` (o el puerto que hayas mapeado).
+    *   La aplicación API estará disponible en `http://localhost:8080`.
 5.  **Para detener los servicios:**
     ```bash
     docker-compose down
@@ -110,7 +109,6 @@ Para interactuar con la API una vez que esté ejecutándose:
     -   **URL:** `http://localhost:8080/api/autores`
     -   Envía la solicitud y observa la respuesta JSON.
 
-*(Opcional: Sección de Pruebas y Calidad del Código si aplica)*
 > ## Pruebas
 > Para ejecutar las pruebas unitarias y de integración:
 > ```bash
