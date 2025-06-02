@@ -84,14 +84,14 @@ Si deseas ejecutar la aplicación Java localmente y conectarla a una instancia d
 
 La API REST proporciona los siguientes endpoints para la gestión de autores y libros (base path `/api/v1`):
 
-### Autores (`/api/v1/autores`)
+### Autores (`/api/autores`)
 -   `GET /`: Obtiene una lista de todos los autores.
 -   `GET /{id}`: Obtiene un autor por su ID.
 -   `POST /`: Crea un nuevo autor. Cuerpo de la solicitud: JSON con datos del autor.
 -   `PUT /{id}`: Actualiza un autor existente. Cuerpo de la solicitud: JSON con datos del autor.
 -   `DELETE /{id}`: Elimina un autor (valida dependencias).
 
-### Libros (`/api/v1/libros`)
+### Libros (`/api/libros`)
 -   `GET /`: Obtiene una lista de todos los libros (con información del autor).
 -   `GET /{id}`: Obtiene un libro por su ID.
 -   `POST /`: Crea un nuevo libro. Cuerpo de la solicitud: JSON con datos del libro (incluyendo `idAutor`).
@@ -107,7 +107,7 @@ Para interactuar con la API una vez que esté ejecutándose:
 1.  Utiliza una herramienta como **Postman** o **Insomnia**.
 2.  Ejemplo para consultar todos los autores:
     -   **Método:** `GET`
-    -   **URL:** `http://localhost:8080/api/v1/autores`
+    -   **URL:** `http://localhost:8080/api/autores`
     -   Envía la solicitud y observa la respuesta JSON.
 
 *(Opcional: Sección de Pruebas y Calidad del Código si aplica)*
